@@ -2,6 +2,7 @@ var express = require('express');
 var stylus  = require('stylus');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var app = express();
@@ -26,6 +27,11 @@ app.use(stylus.middleware(
 ));
 
 app.use(express.static(__dirname + '/public'));
+
+//Create a route for your partials
+app.get('/partials/:partialPath', function(req, res){
+    res.render('partials/' + req.params.partialPath);
+});
 
 //We use the * to match all route because any route that passes through this channel the * will handle it. This include css, img, javascript request
 
