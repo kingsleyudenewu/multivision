@@ -33,6 +33,7 @@ if(env === "development"){
     mongoose.connect('mongodb://localhost/multivision');
 }
 else{
+    //Here the database end with a (s) because on mLab the database already exist
     mongoose.connect('mongodb://larastack:laracode@ds043210.mlab.com:43210/multivisions');
 }
 
