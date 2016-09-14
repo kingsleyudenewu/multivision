@@ -29,7 +29,13 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname + '/public'));
 
 //Connect to mondb database
-mongoose.connect('mongodb://localhost/multivision');
+if(env === "development"){
+    mongoose.connect('mongodb://localhost/multivision');
+}
+else{
+    mongoose.connect('mongodb://larastack:laracode@ds043210.mlab.com:43210/multivisions');
+}
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error...'));
 db.once('open', function callback(){
